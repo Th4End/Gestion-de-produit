@@ -1,0 +1,21 @@
+<div class="container">
+    <h2 class="page-title">
+        Modifier le produit
+    </h2>
+
+    <div *ngIf="isLoading" class="loading-container">
+        <div class="spinner"></div>
+        <p class="loading-text">Chargement...</p>
+    </div>
+
+    <div *ngIf="!isLoading && product" class="edit-form-container">
+        <app-product-form
+            [initialProduct]="product"
+            (submitForm)="handleUpdate($event)">
+        </app-product-form>
+    </div>
+
+    <div *ngIf="!isLoading && !product" class="not-found">
+        <p>Le produit n'a pas été trouvé.</p>
+    </div>
+</div>

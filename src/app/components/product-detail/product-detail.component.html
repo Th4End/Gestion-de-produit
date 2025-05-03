@@ -1,0 +1,31 @@
+<div *ngIf="product" class="product-container">
+    <h2 class="product-title">{{ product.name }}</h2>
+    
+    <div class="product-details">
+        <p class="detail-item">
+            <span class="label">Catégorie :</span> 
+            <span class="value">{{ product.category }}</span>
+        </p>
+        <p class="detail-item">
+            <span class="label">Prix :</span> 
+            <span class="value">{{ product.price | currency:'EUR' }}</span>
+        </p>
+        <div class="description-section">
+            <p class="description-label">Description originale :</p>
+            <p class="description-text">{{ product.description }}</p>
+        </div>
+    </div>
+
+    <button 
+        (click)="enrichProduct()" 
+        [disabled]="isEnriching"
+        class="enrich-button">
+        {{ isEnriching ? 'Enrichissement en cours...' : 'Enrichir la description avec Jina.AI' }}
+    </button>
+
+    <div *ngIf="enrichedDescription && enrichedDescription !== product.description" 
+         class="enriched-description">
+        <h3 class="enriched-title">Description enrichie :</h3>
+        <p class="enriched-text">{{ enrichedDescription }}</p>
+    </div>
+</div>

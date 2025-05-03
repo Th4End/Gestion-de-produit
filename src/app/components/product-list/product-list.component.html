@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="header">
+        <h2 class="title">Liste des produits</h2>
+        <a routerLink="/products/create" class="btn btn-primary">
+           Nouveau produit
+        </a>
+    </div>
+
+    <div class="search-container">
+        <input 
+            [(ngModel)]="searchTerm" 
+            (input)="onSearch()" 
+            placeholder="Rechercher un produit..." 
+            class="search-input" />
+    </div>
+
+    <div class="products-grid">
+        <div *ngFor="let product of filteredProducts" class="product-card">
+            <div class="product-content">
+                <div class="product-header">
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <span class="badge">{{ product.category }}</span>
+                </div>
+                
+                <p class="product-price">
+                    {{ product.price | currency:'EUR' }}
+                </p>
+
+                <div class="product-actions">
+                    <a [routerLink]="['/product', product.id]" 
+                       class="btn btn-link">
+                       Détails
+                    </a>
+                    <div class="button-group">
+                        <button [routerLink]="['/edit', product.id]" 
+                                class="btn btn-secondary">
+                            Modifier
+                        </button>
+                        <button [routerLink]="['/delete', product.id]" 
+                                class="btn btn-danger">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
